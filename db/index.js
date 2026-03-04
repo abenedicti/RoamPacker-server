@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 
 async function connectDB() {
-  //! bc we already call the server when it starts (server.js l37) we don't need to check the connection
-  // if (mongoose.connection.readyState === 1) {
-  //   return;
-  // }
+  if (mongoose.connection.readyState === 1) {
+    return;
+  }
 
   try {
     const response = await mongoose.connect(process.env.MONGODB_URI);

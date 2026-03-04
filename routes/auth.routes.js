@@ -10,21 +10,27 @@ const router = require('express').Router();
 /// POST './api/auth/signup' => Creating user document
 router.post('/signup', async (req, res, next) => {
   console.log(req.body);
+  const { email, password, username } = req.body;
+  if (!email || !password || !username) {
+    return res.status(400).json({
+      errorMessage: 'All fields are required (email, password, username',
+    });
+  }
+  //*  require strong password
+  const passwordRegex =
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/gm;
+  if (passwordRegex.test(password) === false) {
+    return res.status(400).json({
+      errorMessage:
+        'Password must follow this pattern (min 8 characters, max 20 characters, include lowercase, include uppercase, include number)',
+    });
+  }
   try {
-    const { email, password, username } = req.body;
-
-    if (!email || !password || !username) {
+    ///* check if the email already exist
+    const foundUser = await User.findOne({ email: email });
+    if (foundUser) {
       return res.status(400).json({
-        errorMessage: 'All fields are required (email, password, username',
-      });
-    }
-    //*  require strong password
-    const passwordRegex =
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/gm;
-    if (passwordRegex.test(password) === false) {
-      return res.status(400).json({
-        errorMessage:
-          'Password must follow this pattern (min 8 characters, max 20 characters, include lowercase, include uppercase, include number)',
+        errorMessage: 'User already registered with that email',
       });
     }
     //* hash password
@@ -37,13 +43,6 @@ router.post('/signup', async (req, res, next) => {
     res.status(201).json(response);
   } catch (error) {
     next(error);
-  }
-  ///* check if the email already exist
-  const foundUser = await User.findOne({ email: email });
-  if (foundUser) {
-    return res.status(400).json({
-      errorMessage: 'User already registered with that email',
-    });
   }
 });
 

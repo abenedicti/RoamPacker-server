@@ -19,12 +19,14 @@ const userSchema = new Schema(
     budget: Number,
     firstTrip: Boolean,
     favorites: [String],
-    itineraries: [{ type: Schema.Types.ObjectId, ref: 'Itinerary' }],
+    // matches: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    // itineraries: [{ type: Schema.Types.ObjectId, ref: 'Itinerary' }],
     //* matching preferences
+    interests: [String],
+    travelStyle: String,
     travelDate: Date,
     favoriteFood: String,
     preferredCountry: String,
-    typeOfActivity: String,
     spokenLanguages: String,
   },
   {
