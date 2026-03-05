@@ -4,10 +4,12 @@ const User = require('../models/User.model');
 const verifyToken = require('../middlewares/auth.middlewares');
 
 //* get user profile
+//! tested ok
 router.get('/:userId', verifyToken, async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.userId);
-    // .populate('itineraries');
+    const user = await User.findById(req.params.userId)
+      .populate('itineraries') // get full iti
+      .populate('matches', 'username email');
     res.json(user);
   } catch (error) {
     next(error);
@@ -15,6 +17,7 @@ router.get('/:userId', verifyToken, async (req, res, next) => {
 });
 
 //* update user profile
+//! tested ok
 router.put('/:userId', verifyToken, async (req, res, next) => {
   try {
     //* to avoid a user to modify another profil
@@ -30,6 +33,7 @@ router.put('/:userId', verifyToken, async (req, res, next) => {
   }
 });
 //* delete suer profile
+//! tested ok
 router.delete('/:userId', verifyToken, async (req, res, next) => {
   try {
     if (req.params.userId !== req.payload._id) {

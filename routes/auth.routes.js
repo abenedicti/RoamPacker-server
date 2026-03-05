@@ -7,7 +7,8 @@ const verifyToken = require('../middlewares/auth.middlewares');
 const router = require('express').Router();
 
 //* Signup create user
-/// POST './api/auth/signup' => Creating user document
+// POST './api/auth/signup' => Creating user document
+//! tested ok
 router.post('/signup', async (req, res, next) => {
   console.log(req.body);
   const { email, password, username } = req.body;
@@ -47,7 +48,8 @@ router.post('/signup', async (req, res, next) => {
 });
 
 // Login
-/// POST '/api/auth/login' => Validating user credentials and sending the Token
+// POST '/api/auth/login' => Validating user credentials and sending the Token
+//! tested ok
 router.post('/login', async (req, res, next) => {
   //* to validate the fields
   const { email, password } = req.body;
@@ -87,7 +89,8 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
-/// GET '/api/auth/verify' => Validate the token on new users accessing the client
+// GET '/api/auth/verify' => Validate the token on new users accessing the client
+//! tested ok
 router.get('/verify', verifyToken, (req, res) => {
   res.status(200).json({ payload: req.payload });
 });

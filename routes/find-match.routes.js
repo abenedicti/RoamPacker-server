@@ -2,13 +2,15 @@ const router = require('express').Router();
 const User = require('../models/User.model');
 const verifyToken = require('../middlewares/auth.middlewares');
 
-router.post('/find-partner', verifyToken, async (req, res, next) => {
+//! tested ok
+router.post('/', verifyToken, async (req, res, next) => {
   try {
     const {
       budget,
       interests,
       travelStyle,
-      travelDate,
+      startDate,
+      tripDuration,
       favoriteFood,
       preferredCountry,
       firstTrip,
@@ -17,11 +19,12 @@ router.post('/find-partner', verifyToken, async (req, res, next) => {
 
     const currentUserId = req.payload._id;
 
-    //* fetch all user but userself
+    //* fetch all users except the current user
     const allUsers = await User.find({ _id: { $ne: currentUserId } });
 
-    //* filter by criterias
-    const matchedUsers = allUsers.filter((user) => {
+    const matchedUsersList = []; // to store matched users
+
+    allUsers.forEach((user) => {
       let matchCount = 0;
 
       if (budget && user.budget <= budget) matchCount++;
@@ -35,39 +38,43 @@ router.post('/find-partner', verifyToken, async (req, res, next) => {
       )
         matchCount++;
       if (
-        travelDate &&
-        user.travelDate &&
-        new Date(user.travelDate).toDateString() ===
-          new Date(travelDate).toDateString()
+        startDate &&
+        user.startDate &&
+        new Date(user.startDate).toDateString() ===
+          new Date(startDate).toDateString()
       )
         matchCount++;
+
+      if (tripDuration && user.tripDuration === tripDuration) matchCount++;
+
       if (favoriteFood && user.favoriteFood === favoriteFood) matchCount++;
+
       if (firstTrip !== undefined && user.firstTrip === firstTrip) matchCount++;
       if (partyMood && user.partyMood === partyMood) matchCount++;
 
       const totalCriteria = 8;
       const matchPercentage = Math.round((matchCount / totalCriteria) * 100);
-      //* min 4 commun criterias to consider the match = 50%
+
+      //* min 4 common criteria to consider the match (50%)
       if (matchPercentage >= 50) {
-        //! to be sent to frontend
-        const simpleUser = {
+        matchedUsersList.push({
           id: user._id,
           username: user.username,
           budget: user.budget,
           interests: user.interests,
           travelStyle: user.travelStyle,
-          travelDate: user.travelDate,
+          startDate: user.startDate,
+          tripDuration: user.tripDuration,
           favoriteFood: user.favoriteFood,
           preferredCountry: user.preferredCountry,
           firstTrip: user.firstTrip,
           partyMood: user.partyMood,
-          matchPercentage: matchPercentage,
-        };
-        matchedUsers.push(simpleUser);
+          matchPercentage,
+        });
       }
     });
 
-    res.json(matchedUsers);
+    res.json(matchedUsersList);
   } catch (error) {
     next(error);
   }

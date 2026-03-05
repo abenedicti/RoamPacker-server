@@ -1,43 +1,105 @@
 const router = require('express').Router();
 const Itinerary = require('../models/Itinerary.model');
 const verifyToken = require('../middlewares/auth.middlewares');
+const mongoose = require('mongoose');
+const User = require('../models/User.model');
 
 //* create itinerary
+//! tested ok
 router.post('/', verifyToken, async (req, res, next) => {
   try {
-    const { title, destinations } = req.body;
-    const itinerary = await Itinerary.create({
-      creator: req.payload._id,
+    const { title, points } = req.body; // "points" = array of city points with lat/lng/comment
+
+    // create new itinerary linked to the logged-in user
+    const newItinerary = await Itinerary.create({
+      owner: req.payload._id, // the logged-in user becomes the owner
       title,
-      destinations,
+      points, // array of points
     });
-    res.status(201).json(itinerary);
+    //* Update user's itineraries array (addToSet avoid duplicate)
+    await User.findByIdAndUpdate(req.payload._id, {
+      $addToSet: { itineraries: newItinerary._id },
+    });
+
+    res.status(201).json(newItinerary);
   } catch (error) {
     next(error);
   }
 });
 
-//* get all iti from the user
+//* get all iti of logged-in user
+//! tested ok
 router.get('/', verifyToken, async (req, res, next) => {
   try {
-    const itineraries = await Itinerary.find({ creator: req.payload._id });
-    res.json(itineraries);
+    const userItineraries = await Itinerary.find({ owner: req.payload._id });
+    res.json(userItineraries);
   } catch (error) {
     next(error);
   }
 });
 
-//* to share iti with a user
+//* share iti with another user
+//! tested ok
 router.put('/:itineraryId/share', verifyToken, async (req, res, next) => {
   try {
-    const { targetUserId } = req.body;
-    const itinerary = await Itinerary.findByIdAndUpdate(
-      req.params.itineraryId,
-      // add new value to the array without duplicates
-      { $addToSet: { sharedWith: targetUserId } },
-      { new: true },
-    );
-    res.json(itinerary);
+    const { targetUserId } = req.body; // user to share the itinerary with
+
+    // validate itinerary ID
+    if (!mongoose.Types.ObjectId.isValid(req.params.itineraryId)) {
+      return res.status(400).json({ errorMessage: 'Invalid itinerary ID' });
+    }
+
+    // find the itinerary
+    const itineraryToShare = await Itinerary.findById(req.params.itineraryId);
+    if (!itineraryToShare) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+
+    // check that the logged-in user is the owner
+    if (itineraryToShare.owner.toString() !== req.payload._id) {
+      return res
+        .status(403)
+        .json({ message: 'Not authorized to share this itinerary' });
+    }
+
+    // add target user to sharedWith array, avoiding duplicates
+    itineraryToShare.sharedWith.addToSet(targetUserId);
+    await itineraryToShare.save();
+
+    res.json(itineraryToShare);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//* delete an itinerary
+//! tested ok
+router.delete('/:itineraryId', verifyToken, async (req, res, next) => {
+  try {
+    const { itineraryId } = req.params;
+
+    // validate itinerary ID
+    if (!mongoose.Types.ObjectId.isValid(itineraryId)) {
+      return res.status(400).json({ errorMessage: 'Invalid itinerary ID' });
+    }
+
+    // find the itinerary
+    const itineraryToDelete = await Itinerary.findById(itineraryId);
+    if (!itineraryToDelete) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+
+    // only the owner can delete
+    if (itineraryToDelete.owner.toString() !== req.payload._id) {
+      return res
+        .status(403)
+        .json({ message: 'Not authorized to delete this itinerary' });
+    }
+
+    // delete the itinerary
+    await Itinerary.findByIdAndDelete(itineraryId);
+
+    res.status(200).json({ message: 'Itinerary deleted successfully' });
   } catch (error) {
     next(error);
   }

@@ -1,0 +1,22 @@
+[
+  {
+    "continent": "Africa",
+    "countries": ["Nigeria", "Egypt", "South Africa", "Kenya", "Morocco"]
+  },
+  {
+    "continent": "Americas",
+    "countries": ["United States", "Canada", "Brazil", "Mexico", "Argentina"]
+  },
+  {
+    "continent": "Asia",
+    "countries": ["China", "India", "Japan", "Thailand", "Vietnam"]
+  },
+  {
+    "continent": "Europe",
+    "countries": ["Germany", "France", "United Kingdom", "Italy", "Spain"]
+  },
+  {
+    "continent": "Oceania",
+    "countries": ["Australia", "New Zealand", "Fiji", "Samoa", "Tonga"]
+  }
+]

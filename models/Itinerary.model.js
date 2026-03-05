@@ -1,29 +1,39 @@
 const { Schema, model } = require('mongoose');
-const itinerarySchema = new Schema({
-  creator: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
 
-  title: String,
+const pointSchema = new Schema({
+  city: String,
+  lat: Number,
+  lng: Number,
+  comment: String,
+});
 
-  destinations: [
-    {
-      city: String,
-      lat: Number,
-      lng: Number,
-      comment: String,
-    },
-  ],
-
-  sharedWith: [
-    {
+const itinerarySchema = new Schema(
+  {
+    owner: {
+      // user create iti
       type: Schema.Types.ObjectId,
       ref: 'User',
+      required: true,
     },
-  ],
-  createdAt: { type: Date, default: Date.now },
-});
+
+    title: {
+      type: String,
+      required: true,
+    },
+
+    points: [pointSchema],
+
+    sharedWith: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
+  },
+  {
+    timestamps: true, // add createdAt et updatedAt automatically
+  },
+);
+
 const Itinerary = model('Itinerary', itinerarySchema);
 module.exports = Itinerary;

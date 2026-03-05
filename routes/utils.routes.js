@@ -6,6 +6,7 @@ const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 
 //* Create random users
+//! tested ok
 router.post('/generate-users', async (req, res, next) => {
   try {
     const numberOfUsers = req.body.number || 10;

@@ -18,4 +18,11 @@ router.use('/itineraries', itineraryRouter);
 const utilsRouter = require('./utils.routes');
 router.use('/utils', utilsRouter);
 
+const findMatchRouter = require('./find-match.routes');
+router.use('/find-match', findMatchRouter);
+
+// public route for destination
+const destinationsRouter = require('./destinations.routes');
+router.use('/destinations', destinationsRouter);
+
 module.exports = router;
