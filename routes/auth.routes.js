@@ -6,7 +6,7 @@ const verifyToken = require('../middlewares/auth.middlewares');
 //* create a router to split routes
 const router = require('express').Router();
 
-// Signup
+//* Signup create user
 /// POST './api/auth/signup' => Creating user document
 router.post('/signup', async (req, res, next) => {
   console.log(req.body);

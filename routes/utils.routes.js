@@ -5,7 +5,7 @@ const fetchRandomUsers = require('../utils/fetchRandomUsers');
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 
-// Create random users
+//* Create random users
 router.post('/generate-users', async (req, res, next) => {
   try {
     const numberOfUsers = req.body.number || 10;
@@ -19,7 +19,7 @@ router.post('/generate-users', async (req, res, next) => {
       // add the other fields later
     }));
 
-    // to save users in database
+    //* to save users in database
     const createdUsers = await User.insertMany(usersForMatch);
 
     res.status(201).json({

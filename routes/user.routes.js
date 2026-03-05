@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model');
 const verifyToken = require('../middlewares/auth.middlewares');
-// get user profil
+
+//* get user profile
 router.get('/:userId', verifyToken, async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId);
@@ -13,7 +14,7 @@ router.get('/:userId', verifyToken, async (req, res, next) => {
   }
 });
 
-// update user profil
+//* update user profile
 router.put('/:userId', verifyToken, async (req, res, next) => {
   try {
     //* to avoid a user to modify another profil
@@ -28,6 +29,7 @@ router.put('/:userId', verifyToken, async (req, res, next) => {
     next(error);
   }
 });
+//* delete suer profile
 router.delete('/:userId', verifyToken, async (req, res, next) => {
   try {
     if (req.params.userId !== req.payload._id) {
