@@ -4,8 +4,12 @@
     "countries": ["Nigeria", "Egypt", "South Africa", "Kenya", "Morocco"]
   },
   {
-    "continent": "Americas",
-    "countries": ["United States", "Canada", "Brazil", "Mexico", "Argentina"]
+    "continent": "North America",
+    "countries": ["United States", "Canada", "Mexico"]
+  },
+  {
+    "continent": "South America",
+    "countries": ["Brazil", "Argentina", "Uruguay", "Colombia", "Chile"]
   },
   {
     "continent": "Asia",

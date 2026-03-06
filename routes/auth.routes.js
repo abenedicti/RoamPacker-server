@@ -14,7 +14,7 @@ router.post('/signup', async (req, res, next) => {
   const { email, password, username } = req.body;
   if (!email || !password || !username) {
     return res.status(400).json({
-      errorMessage: 'All fields are required (email, password, username',
+      errorMessage: 'All fields are required (email, password, username)',
     });
   }
   //*  require strong password
@@ -57,7 +57,7 @@ router.post('/login', async (req, res, next) => {
     // return stop the route to continue
     return res
       .status(400)
-      .json({ errorMessage: 'All fields are required (email, password' });
+      .json({ errorMessage: 'All fields are required (email, password)' });
   }
   try {
     const foundUser = await User.findOne({ email: email });
