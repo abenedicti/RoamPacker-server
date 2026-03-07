@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const destinationsData = require('../data/destinationsData.json');
 
 const API_KEY = process.env.OPENTRIPMAP_API_KEY;
 
+//* fetch continents and countries with json file
+router.get('/destinations-data', (req, res) => {
+  res.json(destinationsData);
+});
 //* Search of a city and get the datas
 //! tested ok
 router.get('/city/:cityName', async (req, res, next) => {
