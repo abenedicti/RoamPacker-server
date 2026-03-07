@@ -38,6 +38,27 @@ router.get('/', verifyToken, async (req, res, next) => {
   }
 });
 
+//* get a specific iti
+router.get('/:itineraryId', verifyToken, async (req, res, next) => {
+  try {
+    const { itineraryId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(itineraryId)) {
+      return res.status(400).json({ message: 'Invalid itinerary ID' });
+    }
+
+    const itinerary = await Itinerary.findById(itineraryId);
+
+    if (!itinerary) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+
+    res.json(itinerary);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //* share iti with another user
 //! tested ok
 router.put('/:itineraryId/share', verifyToken, async (req, res, next) => {
