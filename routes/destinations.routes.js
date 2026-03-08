@@ -6,8 +6,48 @@ const destinationsData = require('../data/destinationsData.json');
 const API_KEY = process.env.OPENTRIPMAP_API_KEY;
 
 //* fetch continents and countries with json file
+//* /destination/destinations-data
 router.get('/destinations-data', (req, res) => {
   res.json(destinationsData);
+});
+//* Get countries of a continent
+router.get('/:continent/countries', (req, res) => {
+  const { continent } = req.params;
+
+  const continentData = destinationsData.find(
+    (data) => data.continent.toLowerCase() === continent.toLowerCase(),
+  );
+
+  if (!continentData) {
+    return res.status(404).json({ message: 'Continent not found' });
+  }
+
+  res.json(continentData.countries);
+});
+
+router.get('/:country/cities', async (req, res, next) => {
+  const { country } = req.params;
+
+  try {
+    const response = await axios.get('http://api.geonames.org/searchJSON', {
+      params: {
+        q: country, // or ISO code 2 letters
+        featureClass: 'P', // P = populated places (villes)
+        maxRows: 50,
+        username: process.env.GEONAMES_USERNAME,
+      },
+    });
+
+    if (!response.data.geonames || !response.data.geonames.length) {
+      return res.json({ country, cities: [] });
+    }
+
+    const cities = response.data.geonames.map((c) => c.name);
+    res.json({ country, cities });
+  } catch (error) {
+    // console.error('GeoNames fetch error:', error.message);
+    res.status(500).json({ message: 'Failed to fetch cities' });
+  }
 });
 //* Search of a city and get the datas
 //! tested ok
