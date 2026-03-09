@@ -30,56 +30,6 @@
     ]
   },
   {
-    "continent": "North America",
-    "countries": [
-      {
-        "name": "United States",
-        "code": "US",
-        "cities": ["New York", "Los Angeles", "Chicago", "Miami"]
-      },
-      {
-        "name": "Canada",
-        "code": "CA",
-        "cities": ["Toronto", "Vancouver", "Montreal", "Calgary"]
-      },
-      {
-        "name": "Mexico",
-        "code": "MX",
-        "cities": ["Mexico City", "Guadalajara", "Monterrey", "Cancun"]
-      }
-    ]
-  },
-  {
-    "continent": "South America",
-    "countries": [
-      {
-        "name": "Brazil",
-        "code": "BR",
-        "cities": ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"]
-      },
-      {
-        "name": "Argentina",
-        "code": "AR",
-        "cities": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza"]
-      },
-      {
-        "name": "Uruguay",
-        "code": "UY",
-        "cities": ["Montevideo", "Salto", "Paysandú", "Maldonado"]
-      },
-      {
-        "name": "Colombia",
-        "code": "CO",
-        "cities": ["Bogotá", "Medellín", "Cali", "Cartagena"]
-      },
-      {
-        "name": "Chile",
-        "code": "CL",
-        "cities": ["Santiago", "Valparaíso", "Concepción", "Viña del Mar"]
-      }
-    ]
-  },
-  {
     "continent": "Asia",
     "countries": [
       {
@@ -166,6 +116,56 @@
         "name": "Tonga",
         "code": "TO",
         "cities": ["Nukuʻalofa", "Neiafu", "Haveluloto", "Vaini"]
+      }
+    ]
+  },
+  {
+    "continent": "North America",
+    "countries": [
+      {
+        "name": "United States",
+        "code": "US",
+        "cities": ["New York", "Los Angeles", "Chicago", "Miami"]
+      },
+      {
+        "name": "Canada",
+        "code": "CA",
+        "cities": ["Toronto", "Vancouver", "Montreal", "Calgary"]
+      },
+      {
+        "name": "Mexico",
+        "code": "MX",
+        "cities": ["Mexico City", "Guadalajara", "Monterrey", "Cancun"]
+      }
+    ]
+  },
+  {
+    "continent": "South America",
+    "countries": [
+      {
+        "name": "Brazil",
+        "code": "BR",
+        "cities": ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"]
+      },
+      {
+        "name": "Argentina",
+        "code": "AR",
+        "cities": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza"]
+      },
+      {
+        "name": "Uruguay",
+        "code": "UY",
+        "cities": ["Montevideo", "Salto", "Paysandú", "Maldonado"]
+      },
+      {
+        "name": "Colombia",
+        "code": "CO",
+        "cities": ["Bogotá", "Medellín", "Cali", "Cartagena"]
+      },
+      {
+        "name": "Chile",
+        "code": "CL",
+        "cities": ["Santiago", "Valparaíso", "Concepción", "Viña del Mar"]
       }
     ]
   }
