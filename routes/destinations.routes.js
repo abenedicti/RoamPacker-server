@@ -4,6 +4,8 @@ const axios = require('axios');
 const destinationsData = require('../data/destinationsData.json');
 
 const API_KEY = process.env.OPENTRIPMAP_API_KEY;
+let cityCache = {}; // { countryCode: { timestamp, cities: [] } }
+const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
 
 //* fetch continents and countries with json file
 //* /destination/destinations-data
@@ -25,30 +27,61 @@ router.get('/:continent/countries', (req, res) => {
   res.json(continentData.countries);
 });
 
-router.get('/:country/cities', async (req, res, next) => {
+router.get('/:country/cities', async (req, res) => {
   const { country } = req.params;
 
+  //* check the cach
+  const cached = cityCache[country];
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+    return res.json({ country, cities: cached.cities });
+  }
+
+  //* try with GeoNames if available if not use json
   try {
-    const response = await axios.get('http://api.geonames.org/searchJSON', {
+    const response = await axios.get('https://api.geonames.org/searchJSON', {
       params: {
-        q: country, // or ISO code 2 letters
-        featureClass: 'P', // P = populated places (villes)
+        country,
+        featureClass: 'P', //* P = only cities
         maxRows: 50,
+        minPopulation: 50000,
         username: process.env.GEONAMES_USERNAME,
       },
+      timeout: 10000, //* 10 sec max to avoid blockage
     });
 
-    if (!response.data.geonames || !response.data.geonames.length) {
-      return res.json({ country, cities: [] });
+    const cities = response.data.geonames.map((c) => c.name);
+
+    //* to show request if already asked instead of sending a new one
+    cityCache[country] = {
+      timestamp: Date.now(),
+      cities,
+    };
+
+    return res.json({ country, cities });
+  } catch (error) {
+    console.error('GeoNames error:', error.response?.data || error.message);
+
+    //* fallback static json - searching main cities and if API not available keep the previous results
+    let fallbackCities = [];
+    for (const continent of destinationsData) {
+      const countryEntry = continent.countries.find((c) => c.code === country);
+      if (countryEntry && Array.isArray(countryEntry.cities)) {
+        fallbackCities = countryEntry.cities;
+        break;
+      }
     }
 
-    const cities = response.data.geonames.map((c) => c.name);
-    res.json({ country, cities });
-  } catch (error) {
-    // console.error('GeoNames fetch error:', error.message);
-    res.status(500).json({ message: 'Failed to fetch cities' });
+    //* fallback to prevent re-loading for each click
+    cityCache[country] = {
+      timestamp: Date.now(),
+      cities: fallbackCities,
+    };
+
+    //* to send cities from json or empty array
+    return res.json({ country, cities: fallbackCities });
   }
 });
+
 //* Search of a city and get the datas
 //! tested ok
 router.get('/city/:cityName', async (req, res, next) => {

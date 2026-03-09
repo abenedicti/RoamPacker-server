@@ -1,26 +1,172 @@
 [
   {
     "continent": "Africa",
-    "countries": ["Nigeria", "Egypt", "South Africa", "Kenya", "Morocco"]
+    "countries": [
+      {
+        "name": "Nigeria",
+        "code": "NG",
+        "cities": ["Lagos", "Abuja", "Kano", "Ibadan"]
+      },
+      {
+        "name": "Egypt",
+        "code": "EG",
+        "cities": ["Cairo", "Alexandria", "Giza", "Luxor"]
+      },
+      {
+        "name": "South Africa",
+        "code": "ZA",
+        "cities": ["Johannesburg", "Cape Town", "Durban", "Pretoria"]
+      },
+      {
+        "name": "Kenya",
+        "code": "KE",
+        "cities": ["Nairobi", "Mombasa", "Kisumu", "Nakuru"]
+      },
+      {
+        "name": "Morocco",
+        "code": "MA",
+        "cities": ["Casablanca", "Marrakech", "Rabat", "Fes"]
+      }
+    ]
   },
   {
     "continent": "North America",
-    "countries": ["United States", "Canada", "Mexico"]
+    "countries": [
+      {
+        "name": "United States",
+        "code": "US",
+        "cities": ["New York", "Los Angeles", "Chicago", "Miami"]
+      },
+      {
+        "name": "Canada",
+        "code": "CA",
+        "cities": ["Toronto", "Vancouver", "Montreal", "Calgary"]
+      },
+      {
+        "name": "Mexico",
+        "code": "MX",
+        "cities": ["Mexico City", "Guadalajara", "Monterrey", "Cancun"]
+      }
+    ]
   },
   {
     "continent": "South America",
-    "countries": ["Brazil", "Argentina", "Uruguay", "Colombia", "Chile"]
+    "countries": [
+      {
+        "name": "Brazil",
+        "code": "BR",
+        "cities": ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"]
+      },
+      {
+        "name": "Argentina",
+        "code": "AR",
+        "cities": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza"]
+      },
+      {
+        "name": "Uruguay",
+        "code": "UY",
+        "cities": ["Montevideo", "Salto", "Paysandú", "Maldonado"]
+      },
+      {
+        "name": "Colombia",
+        "code": "CO",
+        "cities": ["Bogotá", "Medellín", "Cali", "Cartagena"]
+      },
+      {
+        "name": "Chile",
+        "code": "CL",
+        "cities": ["Santiago", "Valparaíso", "Concepción", "Viña del Mar"]
+      }
+    ]
   },
   {
     "continent": "Asia",
-    "countries": ["China", "India", "Japan", "Thailand", "Vietnam"]
+    "countries": [
+      {
+        "name": "China",
+        "code": "CN",
+        "cities": ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"]
+      },
+      {
+        "name": "India",
+        "code": "IN",
+        "cities": ["Mumbai", "Delhi", "Bangalore", "Kolkata"]
+      },
+      {
+        "name": "Japan",
+        "code": "JP",
+        "cities": ["Tokyo", "Osaka", "Kyoto", "Nagoya"]
+      },
+      {
+        "name": "Thailand",
+        "code": "TH",
+        "cities": ["Bangkok", "Chiang Mai", "Phuket", "Pattaya"]
+      },
+      {
+        "name": "Vietnam",
+        "code": "VN",
+        "cities": ["Hanoi", "Ho Chi Minh City", "Da Nang", "Hue"]
+      }
+    ]
   },
   {
     "continent": "Europe",
-    "countries": ["Germany", "France", "United Kingdom", "Italy", "Spain"]
+    "countries": [
+      {
+        "name": "Germany",
+        "code": "DE",
+        "cities": ["Berlin", "Munich", "Hamburg", "Frankfurt"]
+      },
+      {
+        "name": "France",
+        "code": "FR",
+        "cities": ["Paris", "Lyon", "Marseille", "Toulouse"]
+      },
+      {
+        "name": "United Kingdom",
+        "code": "GB",
+        "cities": ["London", "Manchester", "Edinburgh", "Birmingham"]
+      },
+      {
+        "name": "Italy",
+        "code": "IT",
+        "cities": ["Rome", "Milan", "Florence", "Naples"]
+      },
+      {
+        "name": "Spain",
+        "code": "ES",
+        "cities": ["Madrid", "Barcelona", "Seville", "Valencia"]
+      }
+    ]
   },
   {
     "continent": "Oceania",
-    "countries": ["Australia", "New Zealand", "Fiji", "Samoa", "Tonga"]
+    "countries": [
+      {
+        "name": "Australia",
+        "code": "AU",
+        "cities": ["Sydney", "Melbourne", "Brisbane", "Perth"]
+      },
+      {
+        "name": "New Zealand",
+        "code": "NZ",
+        "cities": ["Auckland", "Wellington", "Christchurch", "Hamilton"]
+      },
+      {
+        "name": "Fiji",
+        "code": "FJ",
+        "cities": ["Suva", "Nadi", "Lautoka", "Labasa"]
+      },
+      {
+        "name": "Samoa",
+        "code": "WS",
+        "cities": ["Apia", "Vaitele", "Faleula", "Leulumoega"]
+      },
+      {
+        "name": "Tonga",
+        "code": "TO",
+        "cities": ["Nukuʻalofa", "Neiafu", "Haveluloto", "Vaini"]
+      }
+    ]
   }
 ]
