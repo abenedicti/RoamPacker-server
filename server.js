@@ -20,6 +20,10 @@ app.use(async (req, res, next) => {
   await connectDB();
   next();
 });
+//* testing route
+app.get('/', (req, res, next) => {
+  res.json('All good in here');
+});
 
 //* import file principal routes
 const indexRouter = require('./routes/index.routes');
@@ -27,11 +31,6 @@ app.use('/api', indexRouter);
 
 const handlingError = require('./errors/index');
 handlingError(app);
-
-//* testing route
-app.get('/', (req, res, next) => {
-  res.json('All good in here');
-});
 
 //* Centralized error handling (must be placed after routes)
 
