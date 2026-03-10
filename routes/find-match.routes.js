@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User.model');
 const verifyToken = require('../middlewares/auth.middlewares');
+const fetchRandomUsers = require('../utils/fetchRandomUsers');
 
 //! tested ok
 router.post('/', verifyToken, async (req, res, next) => {
@@ -24,7 +25,7 @@ router.post('/', verifyToken, async (req, res, next) => {
 
     const matchedUsersList = []; // to store matched users
 
-    allUsers.forEach((user) => {
+    allUsers.forEach(async (user) => {
       let matchCount = 0;
 
       if (budget && user.budget <= budget) matchCount++;
@@ -57,6 +58,14 @@ router.post('/', verifyToken, async (req, res, next) => {
 
       //* min 4 common criteria to consider the match (50%)
       if (matchPercentage >= 50) {
+        //* save match in user
+        await User.findByIdAndUpdate(currentUserId, {
+          $addToSet: { matches: user._id },
+        });
+
+        await User.findByIdAndUpdate(user._id, {
+          $addToSet: { matches: currentUserId },
+        });
         matchedUsersList.push({
           id: user._id,
           username: user.username,
@@ -74,7 +83,25 @@ router.post('/', verifyToken, async (req, res, next) => {
       }
     });
 
-    res.json(matchedUsersList);
+    // add fake users
+    const fakeUsersRaw = await fetchRandomUsers(10);
+    const fakeUsers = fakeUsersRaw.map((u, i) => ({
+      id: `fake-${i}`,
+      username: `${u.name.first} ${u.name.last}`,
+      photoUrl: '', // ou url placeholder
+      interests: [u.nat],
+      travelStyle: ['Relaxed', 'Adventure'][Math.floor(Math.random() * 2)],
+      budget: Math.floor(Math.random() * 1000),
+      startDate: new Date(),
+      tripDuration: Math.floor(Math.random() * 14) + 1,
+      favoriteFood: 'Pizza',
+      preferredCountry: 'France',
+      firstTrip: Math.random() < 0.5,
+      partyMood: Math.random() < 0.5,
+      matchPercentage: Math.floor(Math.random() * 50) + 50,
+    }));
+
+    res.json([...matchedUsersList, ...fakeUsers]);
   } catch (error) {
     next(error);
   }

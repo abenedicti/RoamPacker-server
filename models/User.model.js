@@ -17,6 +17,7 @@ const userSchema = new Schema(
     countryOfResidence: String,
     aboutMe: String,
     spokenLanguages: String,
+    photoUrl: String,
     favorites: [String],
     matches: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     itineraries: [{ type: Schema.Types.ObjectId, ref: 'Itinerary' }],
