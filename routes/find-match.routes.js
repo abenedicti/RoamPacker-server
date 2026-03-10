@@ -2,8 +2,9 @@ const router = require('express').Router();
 const User = require('../models/User.model');
 const verifyToken = require('../middlewares/auth.middlewares');
 const fetchRandomUsers = require('../utils/fetchRandomUsers');
+const mongoose = require('mongoose');
 
-//! tested ok
+//! Recherche de matchs
 router.post('/', verifyToken, async (req, res, next) => {
   try {
     const {
@@ -23,9 +24,9 @@ router.post('/', verifyToken, async (req, res, next) => {
     //* fetch all users except the current user
     const allUsers = await User.find({ _id: { $ne: currentUserId } });
 
-    const matchedUsersList = []; // to store matched users
+    const matchedUsersList = []; //* to store real matches
 
-    allUsers.forEach(async (user) => {
+    allUsers.forEach((user) => {
       let matchCount = 0;
 
       if (budget && user.budget <= budget) matchCount++;
@@ -33,8 +34,7 @@ router.post('/', verifyToken, async (req, res, next) => {
       if (preferredCountry && user.preferredCountry === preferredCountry)
         matchCount++;
       if (
-        interests &&
-        interests.length &&
+        interests?.length &&
         user.interests.some((i) => interests.includes(i))
       )
         matchCount++;
@@ -45,62 +45,39 @@ router.post('/', verifyToken, async (req, res, next) => {
           new Date(startDate).toDateString()
       )
         matchCount++;
-
       if (tripDuration && user.tripDuration === tripDuration) matchCount++;
-
       if (favoriteFood && user.favoriteFood === favoriteFood) matchCount++;
-
       if (firstTrip !== undefined && user.firstTrip === firstTrip) matchCount++;
-      if (partyMood && user.partyMood === partyMood) matchCount++;
+      if (partyMood !== undefined && user.partyMood === partyMood) matchCount++;
 
       const totalCriteria = 8;
       const matchPercentage = Math.round((matchCount / totalCriteria) * 100);
-
-      //* min 4 common criteria to consider the match (50%)
       if (matchPercentage >= 50) {
-        //* save match in user
-        await User.findByIdAndUpdate(currentUserId, {
-          $addToSet: { matches: user._id },
-        });
-
-        await User.findByIdAndUpdate(user._id, {
-          $addToSet: { matches: currentUserId },
-        });
-        matchedUsersList.push({
-          id: user._id,
-          username: user.username,
-          budget: user.budget,
-          interests: user.interests,
-          travelStyle: user.travelStyle,
-          startDate: user.startDate,
-          tripDuration: user.tripDuration,
-          favoriteFood: user.favoriteFood,
-          preferredCountry: user.preferredCountry,
-          firstTrip: user.firstTrip,
-          partyMood: user.partyMood,
-          matchPercentage,
-        });
+        matchedUsersList.push(user); // push le user entier
       }
     });
 
     // add fake users
     const fakeUsersRaw = await fetchRandomUsers(10);
-    const fakeUsers = fakeUsersRaw.map((u, i) => ({
-      id: `fake-${i}`,
-      username: `${u.name.first} ${u.name.last}`,
-      photoUrl: '', // ou url placeholder
-      interests: [u.nat],
-      travelStyle: ['Relaxed', 'Adventure'][Math.floor(Math.random() * 2)],
-      budget: Math.floor(Math.random() * 1000),
-      startDate: new Date(),
-      tripDuration: Math.floor(Math.random() * 14) + 1,
-      favoriteFood: 'Pizza',
-      preferredCountry: 'France',
-      firstTrip: Math.random() < 0.5,
-      partyMood: Math.random() < 0.5,
-      matchPercentage: Math.floor(Math.random() * 50) + 50,
-    }));
+    const fakeUsers = fakeUsersRaw.map((u) => {
+      const fakeId = new mongoose.Types.ObjectId();
+      return new User({
+        _id: fakeId,
+        username: `${u.name.first} ${u.name.last}`,
+        photoUrl: u.picture.large,
+        interests: [u.nat],
+        travelStyle: ['Relaxed', 'Adventure'][Math.floor(Math.random() * 2)],
+        budget: Math.floor(Math.random() * 1000),
+        startDate: new Date(),
+        tripDuration: Math.floor(Math.random() * 14) + 1,
+        favoriteFood: 'Pizza',
+        preferredCountry: 'France',
+        firstTrip: Math.random() < 0.5,
+        partyMood: Math.random() < 0.5,
+      });
+    });
 
+    // on renvoie tout pour frontend (mais on ne sauvegarde pas les fake users dans DB)
     res.json([...matchedUsersList, ...fakeUsers]);
   } catch (error) {
     next(error);

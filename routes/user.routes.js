@@ -9,7 +9,8 @@ router.get('/:userId', verifyToken, async (req, res, next) => {
   try {
     const user = await User.findById(req.params.userId)
       .populate('itineraries') // get full iti
-      .populate('matches', 'username email');
+      .populate('matches', 'username email')
+      .populate('savedMatchedUsers', 'username photoUrl');
     res.json(user);
   } catch (error) {
     next(error);
@@ -32,7 +33,7 @@ router.put('/:userId', verifyToken, async (req, res, next) => {
     next(error);
   }
 });
-//* delete suer profile
+//* delete user profile
 //! tested ok
 router.delete('/:userId', verifyToken, async (req, res, next) => {
   try {

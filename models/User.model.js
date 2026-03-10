@@ -20,6 +20,23 @@ const userSchema = new Schema(
     photoUrl: String,
     favorites: [String],
     matches: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    savedMatchedUsers: [
+      {
+        _id: String,
+        username: String,
+        photoUrl: String,
+        interests: [String],
+        travelStyle: String,
+        budget: Number,
+        startDate: Date,
+        tripDuration: Number,
+        favoriteFood: String,
+        preferredCountry: String,
+        firstTrip: Boolean,
+        partyMood: Boolean,
+        matchPercentage: Number,
+      },
+    ],
     itineraries: [{ type: Schema.Types.ObjectId, ref: 'Itinerary' }],
     //* matching preferences
     firstTrip: Boolean,

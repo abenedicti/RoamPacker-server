@@ -53,4 +53,27 @@ router.get('/', verifyToken, async (req, res, next) => {
   }
 });
 
+// POST /api/matches/save
+router.post('/save', verifyToken, async (req, res, next) => {
+  try {
+    const { match } = req.body;
+
+    if (!match || !match.username) {
+      return res.status(400).json({ errorMessage: 'Match data is required' });
+    }
+
+    //* add all object in savedMatchedUsers
+    const updatedUser = await User.findByIdAndUpdate(
+      req.payload._id,
+      { $push: { savedMatchedUsers: match } }, //push full obj
+      { new: true },
+    );
+
+    res.status(200).json(updatedUser.savedMatchedUsers);
+  } catch (err) {
+    console.error('Error saving match:', err);
+    next(err);
+  }
+});
+
 module.exports = router;
