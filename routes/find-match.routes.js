@@ -58,15 +58,39 @@ router.post('/', verifyToken, async (req, res, next) => {
     });
 
     // add fake users
+    const interestsPool = [
+      'Hiking',
+      'Food',
+      'Museums',
+      'Beach',
+      'Nightlife',
+      'Photography',
+      'Road trips',
+      'Culture',
+      'Nature',
+      'Shopping',
+    ];
+    const travelStyles = [
+      'Adventure',
+      'Relaxed',
+      'Backpacking',
+      'Luxury',
+      'Cultural',
+      'Road Trip',
+    ];
     const fakeUsersRaw = await fetchRandomUsers(10);
-    const fakeUsers = fakeUsersRaw.map((u) => {
+    const fakeUsers = fakeUsersRaw.map((u, i) => {
       const fakeId = new mongoose.Types.ObjectId();
-      return new User({
+      return {
         _id: fakeId,
         username: `${u.name.first} ${u.name.last}`,
         photoUrl: u.picture.large,
-        interests: [u.nat],
-        travelStyle: ['Relaxed', 'Adventure'][Math.floor(Math.random() * 2)],
+        interests: [
+          interestsPool[Math.floor(Math.random() * interestsPool.length)],
+          interestsPool[Math.floor(Math.random() * interestsPool.length)],
+        ],
+        travelStyle:
+          travelStyles[Math.floor(Math.random() * travelStyles.length)],
         budget: Math.floor(Math.random() * 1000),
         startDate: new Date(),
         tripDuration: Math.floor(Math.random() * 14) + 1,
@@ -74,7 +98,8 @@ router.post('/', verifyToken, async (req, res, next) => {
         preferredCountry: 'France',
         firstTrip: Math.random() < 0.5,
         partyMood: Math.random() < 0.5,
-      });
+        matchPercentage: Math.floor(Math.random() * 50) + 50,
+      };
     });
 
     // on renvoie tout pour frontend (mais on ne sauvegarde pas les fake users dans DB)

@@ -34,6 +34,8 @@ const userSchema = new Schema(
         preferredCountry: String,
         firstTrip: Boolean,
         partyMood: Boolean,
+        aboutMe: String,
+        spokenLanguages: String,
         matchPercentage: Number,
       },
     ],

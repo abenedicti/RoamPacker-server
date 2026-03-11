@@ -76,4 +76,21 @@ router.post('/save', verifyToken, async (req, res, next) => {
   }
 });
 
+// DELETE /matches/:matchId
+router.delete('/:matchId', verifyToken, async (req, res, next) => {
+  try {
+    const { matchId } = req.params;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.payload._id,
+      { $pull: { savedMatchedUsers: { _id: matchId } } }, // supprime l'objet avec ce _id
+      { new: true },
+    );
+
+    res.status(200).json(updatedUser.savedMatchedUsers);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
