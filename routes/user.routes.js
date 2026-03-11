@@ -52,4 +52,37 @@ router.delete('/:userId', verifyToken, async (req, res, next) => {
   }
 });
 
+/// GET /favorites
+router.get('/favorites', verifyToken, async (req, res, next) => {
+  try {
+    const user = await User.findById(req.payload._id);  ID du token
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user.favorites || []); //* ssend fav array
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PUT /add-favorite
+router.put('/add-favorite', verifyToken, async (req, res, next) => {
+  try {
+    const { xid, name, city, country, kind, rate } = req.body;
+
+    const user = await User.findById(req.payload._id); // ID  token
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const index = user.favorites.findIndex((f) => f.xid === xid);
+    if (index >= 0) {
+      user.favorites.splice(index, 1); // retirer des favoris
+    } else {
+      user.favorites.push({ xid, name, city, country, kind, rate }); //* add to favorites
+
+    await user.save();
+    res.json(user.favorites); 
+  } catch (err) {
+    next(err);
+  }
+}
+});
+
 module.exports = router;

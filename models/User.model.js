@@ -18,7 +18,16 @@ const userSchema = new Schema(
     aboutMe: String,
     spokenLanguages: String,
     photoUrl: String,
-    favorites: [String],
+    favorites: [
+      {
+        xid: String, //* OpenTripMap id
+        name: String,
+        city: String,
+        country: String,
+        kind: String,
+        rate: Number,
+      },
+    ],
     matches: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     savedMatchedUsers: [
       {
