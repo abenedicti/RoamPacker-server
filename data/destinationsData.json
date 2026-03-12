@@ -5,27 +5,212 @@
       {
         "name": "Nigeria",
         "code": "NG",
-        "cities": ["Lagos", "Abuja", "Kano", "Ibadan"]
+        "cities": [
+          "Lagos",
+          "Abuja",
+          "Kano",
+          "Ibadan",
+          "Port Harcourt",
+          "Benin City",
+          "Kaduna",
+          "Maiduguri",
+          "Zaria",
+          "Aba",
+          "Jos",
+          "Ilorin",
+          "Oyo",
+          "Enugu",
+          "Sokoto"
+        ]
       },
       {
         "name": "Egypt",
         "code": "EG",
-        "cities": ["Cairo", "Alexandria", "Giza", "Luxor"]
+        "cities": [
+          "Cairo",
+          "Alexandria",
+          "Giza",
+          "Luxor",
+          "Aswan",
+          "Sharm El Sheikh",
+          "Hurghada",
+          "Ismailia",
+          "Suez",
+          "Tanta",
+          "Mansoura",
+          "Port Said",
+          "Faiyum",
+          "Zagazig",
+          "El Mahalla"
+        ]
       },
       {
         "name": "South Africa",
         "code": "ZA",
-        "cities": ["Johannesburg", "Cape Town", "Durban", "Pretoria"]
+        "cities": [
+          "Johannesburg",
+          "Cape Town",
+          "Durban",
+          "Pretoria",
+          "Port Elizabeth",
+          "Bloemfontein",
+          "Pietermaritzburg",
+          "Nelspruit",
+          "Kimberley",
+          "East London",
+          "Polokwane",
+          "Welkom",
+          "Mthatha",
+          "George",
+          "Soweto"
+        ]
       },
       {
         "name": "Kenya",
         "code": "KE",
-        "cities": ["Nairobi", "Mombasa", "Kisumu", "Nakuru"]
+        "cities": [
+          "Nairobi",
+          "Mombasa",
+          "Kisumu",
+          "Nakuru",
+          "Eldoret",
+          "Thika",
+          "Malindi",
+          "Kitale",
+          "Machakos",
+          "Meru",
+          "Naivasha",
+          "Garissa",
+          "Kakamega",
+          "Bungoma",
+          "Isiolo"
+        ]
       },
       {
         "name": "Morocco",
         "code": "MA",
-        "cities": ["Casablanca", "Marrakech", "Rabat", "Fes"]
+        "cities": [
+          "Casablanca",
+          "Marrakech",
+          "Rabat",
+          "Fes",
+          "Tangier",
+          "Agadir",
+          "Meknes",
+          "Oujda",
+          "Kenitra",
+          "Tetouan",
+          "Salé",
+          "Nador",
+          "El Jadida",
+          "Safi",
+          "Khouribga"
+        ]
+      },
+      {
+        "name": "Ghana",
+        "code": "GH",
+        "cities": [
+          "Accra",
+          "Kumasi",
+          "Tamale",
+          "Takoradi",
+          "Sekondi",
+          "Cape Coast",
+          "Tema",
+          "Obuasi",
+          "Bolgatanga",
+          "Sunyani",
+          "Techiman",
+          "Ho",
+          "Wa",
+          "Koforidua",
+          "Winneba"
+        ]
+      },
+      {
+        "name": "Ethiopia",
+        "code": "ET",
+        "cities": [
+          "Addis Ababa",
+          "Gondar",
+          "Mekelle",
+          "Bahir Dar",
+          "Adama",
+          "Dire Dawa",
+          "Hawassa",
+          "Jimma",
+          "Harar",
+          "Dessie",
+          "Shashemene",
+          "Debre Birhan",
+          "Awasa",
+          "Gambela",
+          "Jijiga"
+        ]
+      },
+      {
+        "name": "Tanzania",
+        "code": "TZ",
+        "cities": [
+          "Dar es Salaam",
+          "Dodoma",
+          "Mwanza",
+          "Arusha",
+          "Mbeya",
+          "Morogoro",
+          "Tanga",
+          "Zanzibar City",
+          "Iringa",
+          "Moshi",
+          "Tabora",
+          "Sumbawanga",
+          "Shinyanga",
+          "Kahama",
+          "Lindi"
+        ]
+      },
+      {
+        "name": "Algeria",
+        "code": "DZ",
+        "cities": [
+          "Algiers",
+          "Oran",
+          "Constantine",
+          "Annaba",
+          "Blida",
+          "Batna",
+          "Tlemcen",
+          "Setif",
+          "Sidi Bel Abbes",
+          "Tiaret",
+          "Mostaganem",
+          "Bejaia",
+          "Skikda",
+          "El Oued",
+          "Chlef"
+        ]
+      },
+      {
+        "name": "Senegal",
+        "code": "SN",
+        "cities": [
+          "Dakar",
+          "Touba",
+          "Thiès",
+          "Saint-Louis",
+          "Kaolack",
+          "Ziguinchor",
+          "Mbour",
+          "Rufisque",
+          "Diourbel",
+          "Tambacounda",
+          "Fatick",
+          "Kolda",
+          "Louga",
+          "Bakel",
+          "Kédougou"
+        ]
       }
     ]
   },
@@ -35,27 +220,212 @@
       {
         "name": "China",
         "code": "CN",
-        "cities": ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"]
+        "cities": [
+          "Beijing",
+          "Shanghai",
+          "Guangzhou",
+          "Shenzhen",
+          "Chengdu",
+          "Hangzhou",
+          "Wuhan",
+          "Xi'an",
+          "Nanjing",
+          "Tianjin",
+          "Suzhou",
+          "Chongqing",
+          "Dongguan",
+          "Foshan",
+          "Shenyang"
+        ]
       },
       {
         "name": "India",
         "code": "IN",
-        "cities": ["Mumbai", "Delhi", "Bangalore", "Kolkata"]
+        "cities": [
+          "Mumbai",
+          "Delhi",
+          "Bangalore",
+          "Kolkata",
+          "Chennai",
+          "Hyderabad",
+          "Pune",
+          "Ahmedabad",
+          "Jaipur",
+          "Lucknow",
+          "Kanpur",
+          "Nagpur",
+          "Surat",
+          "Indore",
+          "Bhopal"
+        ]
       },
       {
         "name": "Japan",
         "code": "JP",
-        "cities": ["Tokyo", "Osaka", "Kyoto", "Nagoya"]
+        "cities": [
+          "Tokyo",
+          "Osaka",
+          "Kyoto",
+          "Nagoya",
+          "Sapporo",
+          "Fukuoka",
+          "Kobe",
+          "Yokohama",
+          "Hiroshima",
+          "Sendai",
+          "Chiba",
+          "Kawasaki",
+          "Kitakyushu",
+          "Saitama",
+          "Shizuoka"
+        ]
       },
       {
         "name": "Thailand",
         "code": "TH",
-        "cities": ["Bangkok", "Chiang Mai", "Phuket", "Pattaya"]
+        "cities": [
+          "Bangkok",
+          "Chiang Mai",
+          "Phuket",
+          "Pattaya",
+          "Hat Yai",
+          "Nakhon Ratchasima",
+          "Khon Kaen",
+          "Udon Thani",
+          "Chiang Rai",
+          "Songkhla",
+          "Nakhon Si Thammarat",
+          "Lampang",
+          "Surat Thani",
+          "Loei",
+          "Sakon Nakhon"
+        ]
       },
       {
         "name": "Vietnam",
         "code": "VN",
-        "cities": ["Hanoi", "Ho Chi Minh City", "Da Nang", "Hue"]
+        "cities": [
+          "Hanoi",
+          "Ho Chi Minh City",
+          "Da Nang",
+          "Hue",
+          "Can Tho",
+          "Hai Phong",
+          "Nha Trang",
+          "Vung Tau",
+          "Bien Hoa",
+          "Quy Nhon",
+          "Thanh Hoa",
+          "Long Xuyen",
+          "Buon Ma Thuot",
+          "Thai Nguyen",
+          "Nam Dinh"
+        ]
+      },
+      {
+        "name": "Indonesia",
+        "code": "ID",
+        "cities": [
+          "Jakarta",
+          "Surabaya",
+          "Bandung",
+          "Medan",
+          "Semarang",
+          "Makassar",
+          "Palembang",
+          "Depok",
+          "Bekasi",
+          "Tangerang",
+          "Bogor",
+          "Malang",
+          "Padang",
+          "Pekanbaru",
+          "Balikpapan"
+        ]
+      },
+      {
+        "name": "Pakistan",
+        "code": "PK",
+        "cities": [
+          "Karachi",
+          "Lahore",
+          "Islamabad",
+          "Rawalpindi",
+          "Faisalabad",
+          "Multan",
+          "Peshawar",
+          "Quetta",
+          "Sialkot",
+          "Gujranwala",
+          "Hyderabad",
+          "Sukkur",
+          "Bahawalpur",
+          "Jhang",
+          "Okara"
+        ]
+      },
+      {
+        "name": "South Korea",
+        "code": "KR",
+        "cities": [
+          "Seoul",
+          "Busan",
+          "Incheon",
+          "Daegu",
+          "Daejeon",
+          "Gwangju",
+          "Suwon",
+          "Ulsan",
+          "Changwon",
+          "Goyang",
+          "Yongin",
+          "Seongnam",
+          "Cheongju",
+          "Jeonju",
+          "Gimhae"
+        ]
+      },
+      {
+        "name": "Malaysia",
+        "code": "MY",
+        "cities": [
+          "Kuala Lumpur",
+          "George Town",
+          "Johor Bahru",
+          "Ipoh",
+          "Kota Kinabalu",
+          "Shah Alam",
+          "Petaling Jaya",
+          "Malacca City",
+          "Kuantan",
+          "Alor Setar",
+          "Kota Bharu",
+          "Seremban",
+          "Sandakan",
+          "Sibu",
+          "Miri"
+        ]
+      },
+      {
+        "name": "Philippines",
+        "code": "PH",
+        "cities": [
+          "Manila",
+          "Quezon City",
+          "Cebu City",
+          "Davao City",
+          "Zamboanga",
+          "Taguig",
+          "Pasig",
+          "Makati",
+          "Iloilo City",
+          "Bacolod",
+          "Cagayan de Oro",
+          "Baguio",
+          "Lipa",
+          "General Santos",
+          "Angeles City"
+        ]
       }
     ]
   },
@@ -65,27 +435,212 @@
       {
         "name": "Germany",
         "code": "DE",
-        "cities": ["Berlin", "Munich", "Hamburg", "Frankfurt"]
+        "cities": [
+          "Berlin",
+          "Munich",
+          "Hamburg",
+          "Frankfurt",
+          "Cologne",
+          "Stuttgart",
+          "Düsseldorf",
+          "Dortmund",
+          "Essen",
+          "Leipzig",
+          "Bremen",
+          "Dresden",
+          "Hanover",
+          "Nuremberg",
+          "Duisburg"
+        ]
       },
       {
         "name": "France",
         "code": "FR",
-        "cities": ["Paris", "Lyon", "Marseille", "Toulouse"]
+        "cities": [
+          "Paris",
+          "Lyon",
+          "Marseille",
+          "Toulouse",
+          "Nice",
+          "Nantes",
+          "Strasbourg",
+          "Montpellier",
+          "Bordeaux",
+          "Lille",
+          "Rennes",
+          "Reims",
+          "Saint-Étienne",
+          "Toulon",
+          "Grenoble"
+        ]
       },
       {
         "name": "United Kingdom",
         "code": "GB",
-        "cities": ["London", "Manchester", "Edinburgh", "Birmingham"]
+        "cities": [
+          "London",
+          "Manchester",
+          "Edinburgh",
+          "Birmingham",
+          "Liverpool",
+          "Leeds",
+          "Glasgow",
+          "Bristol",
+          "Sheffield",
+          "Cardiff",
+          "Newcastle",
+          "Nottingham",
+          "Southampton",
+          "Reading",
+          "Brighton"
+        ]
       },
       {
         "name": "Italy",
         "code": "IT",
-        "cities": ["Rome", "Milan", "Florence", "Naples"]
+        "cities": [
+          "Rome",
+          "Milan",
+          "Florence",
+          "Naples",
+          "Turin",
+          "Venice",
+          "Bologna",
+          "Genoa",
+          "Palermo",
+          "Verona",
+          "Padua",
+          "Trieste",
+          "Bari",
+          "Catania",
+          "Perugia"
+        ]
       },
       {
         "name": "Spain",
         "code": "ES",
-        "cities": ["Madrid", "Barcelona", "Seville", "Valencia"]
+        "cities": [
+          "Madrid",
+          "Barcelona",
+          "Seville",
+          "Valencia",
+          "Bilbao",
+          "Malaga",
+          "Zaragoza",
+          "Granada",
+          "Alicante",
+          "Cordoba",
+          "Valladolid",
+          "Santander",
+          "Toledo",
+          "Salamanca",
+          "Pamplona"
+        ]
+      },
+      {
+        "name": "Netherlands",
+        "code": "NL",
+        "cities": [
+          "Amsterdam",
+          "Rotterdam",
+          "The Hague",
+          "Utrecht",
+          "Eindhoven",
+          "Groningen",
+          "Maastricht",
+          "Leiden",
+          "Delft",
+          "Arnhem",
+          "Breda",
+          "Nijmegen",
+          "Tilburg",
+          "Enschede",
+          "Haarlem"
+        ]
+      },
+      {
+        "name": "Sweden",
+        "code": "SE",
+        "cities": [
+          "Stockholm",
+          "Gothenburg",
+          "Malmö",
+          "Uppsala",
+          "Västerås",
+          "Örebro",
+          "Linköping",
+          "Helsingborg",
+          "Jönköping",
+          "Norrköping",
+          "Lund",
+          "Umeå",
+          "Gävle",
+          "Borås",
+          "Södertälje"
+        ]
+      },
+      {
+        "name": "Poland",
+        "code": "PL",
+        "cities": [
+          "Warsaw",
+          "Krakow",
+          "Łódź",
+          "Wrocław",
+          "Poznań",
+          "Gdańsk",
+          "Szczecin",
+          "Bydgoszcz",
+          "Lublin",
+          "Białystok",
+          "Katowice",
+          "Częstochowa",
+          "Radom",
+          "Toruń",
+          "Gliwice"
+        ]
+      },
+      {
+        "name": "Norway",
+        "code": "NO",
+        "cities": [
+          "Oslo",
+          "Bergen",
+          "Trondheim",
+          "Stavanger",
+          "Drammen",
+          "Fredrikstad",
+          "Kristiansand",
+          "Tromsø",
+          "Sandnes",
+          "Sarpsborg",
+          "Skien",
+          "Ålesund",
+          "Bodø",
+          "Arendal",
+          "Haugesund"
+        ]
+      },
+      {
+        "name": "Switzerland",
+        "code": "CH",
+        "cities": [
+          "Zurich",
+          "Geneva",
+          "Basel",
+          "Bern",
+          "Lausanne",
+          "Winterthur",
+          "St. Gallen",
+          "Lugano",
+          "Lucerne",
+          "Biel",
+          "Thun",
+          "Köniz",
+          "La Chaux-de-Fonds",
+          "Schaffhausen",
+          "Fribourg"
+        ]
       }
     ]
   },
@@ -95,27 +650,212 @@
       {
         "name": "Australia",
         "code": "AU",
-        "cities": ["Sydney", "Melbourne", "Brisbane", "Perth"]
+        "cities": [
+          "Sydney",
+          "Melbourne",
+          "Brisbane",
+          "Perth",
+          "Adelaide",
+          "Gold Coast",
+          "Canberra",
+          "Newcastle",
+          "Wollongong",
+          "Logan City",
+          "Geelong",
+          "Hobart",
+          "Townsville",
+          "Cairns",
+          "Darwin"
+        ]
       },
       {
         "name": "New Zealand",
         "code": "NZ",
-        "cities": ["Auckland", "Wellington", "Christchurch", "Hamilton"]
+        "cities": [
+          "Auckland",
+          "Wellington",
+          "Christchurch",
+          "Hamilton",
+          "Tauranga",
+          "Napier",
+          "Dunedin",
+          "Palmerston North",
+          "Rotorua",
+          "New Plymouth",
+          "Invercargill",
+          "Whangarei",
+          "Gisborne",
+          "Queenstown",
+          "Hastings"
+        ]
       },
       {
         "name": "Fiji",
         "code": "FJ",
-        "cities": ["Suva", "Nadi", "Lautoka", "Labasa"]
+        "cities": [
+          "Suva",
+          "Nadi",
+          "Lautoka",
+          "Labasa",
+          "Sigatoka",
+          "Ba",
+          "Savusavu",
+          "Levuka",
+          "Nasinu",
+          "Navua",
+          "Rakiraki",
+          "Taveuni",
+          "Kadavu",
+          "Rakiraki Town",
+          "Nabouwalu"
+        ]
       },
       {
         "name": "Samoa",
         "code": "WS",
-        "cities": ["Apia", "Vaitele", "Faleula", "Leulumoega"]
+        "cities": [
+          "Apia",
+          "Vaitele",
+          "Faleula",
+          "Leulumoega",
+          "Vaivase",
+          "Motootua",
+          "Satupaitea",
+          "Faleasiu",
+          "Siusega",
+          "Lalomanu",
+          "Vailoa",
+          "Malie",
+          "Tufutafoe",
+          "Afega",
+          "Vaiafai"
+        ]
       },
       {
         "name": "Tonga",
         "code": "TO",
-        "cities": ["Nukuʻalofa", "Neiafu", "Haveluloto", "Vaini"]
+        "cities": [
+          "Nukuʻalofa",
+          "Neiafu",
+          "Haveluloto",
+          "Vaini",
+          "Pangai",
+          "Muʻa",
+          "Lapaha",
+          "Haʻapai",
+          "Vavaʻu",
+          "Felemea",
+          "Foʻui",
+          "Kolonga",
+          "Tatakamotonga",
+          "Maʻufanga",
+          "Kanokupolu"
+        ]
+      },
+      {
+        "name": "Papua New Guinea",
+        "code": "PG",
+        "cities": [
+          "Port Moresby",
+          "Lae",
+          "Mount Hagen",
+          "Madang",
+          "Wewak",
+          "Alotau",
+          "Kimbe",
+          "Kokopo",
+          "Goroka",
+          "Popondetta",
+          "Vanimo",
+          "Mendi",
+          "Bulolo",
+          "Buka",
+          "Rabaul"
+        ]
+      },
+      {
+        "name": "Vanuatu",
+        "code": "VU",
+        "cities": [
+          "Port Vila",
+          "Luganville",
+          "Santo",
+          "Lenakel",
+          "Isangel",
+          "Lakatoro",
+          "Lambasa",
+          "Norsup",
+          "Sarakata",
+          "Bauerfield",
+          "Tanna",
+          "Anatom",
+          "Malekula",
+          "Epi",
+          "Pentecost"
+        ]
+      },
+      {
+        "name": "Solomon Islands",
+        "code": "SB",
+        "cities": [
+          "Honiara",
+          "Gizo",
+          "Auki",
+          "Tulagi",
+          "Kirakira",
+          "Lata",
+          "Buala",
+          "Taro",
+          "Yandina",
+          "Munda",
+          "Noro",
+          "Buala",
+          "Lambete",
+          "Seghe",
+          "Taro Island"
+        ]
+      },
+      {
+        "name": "Micronesia",
+        "code": "FM",
+        "cities": [
+          "Palikir",
+          "Kolonia",
+          "Weno",
+          "Tonoas",
+          "Yap",
+          "Kosrae",
+          "Pohnpei",
+          "Chuuk",
+          "Makiy",
+          "Sokehs",
+          "Fais",
+          "Pingelap",
+          "Ngatik",
+          "Moen",
+          "Sapuk"
+        ]
+      },
+      {
+        "name": "Cook Islands",
+        "code": "CK",
+        "cities": [
+          "Avarua",
+          "Arorangi",
+          "Nikao",
+          "Titikaveka",
+          "Avatiu",
+          "Matavera",
+          "Ngatangiia",
+          "Takuvaine",
+          "Muri",
+          "Tupapa",
+          "Papaaroa",
+          "Vaimaanga",
+          "Tokerau",
+          "Turoa",
+          "Arorangi North"
+        ]
       }
     ]
   },
@@ -125,17 +865,212 @@
       {
         "name": "United States",
         "code": "US",
-        "cities": ["New York", "Los Angeles", "Chicago", "Miami"]
+        "cities": [
+          "New York",
+          "Los Angeles",
+          "Chicago",
+          "Miami",
+          "Houston",
+          "Phoenix",
+          "Philadelphia",
+          "San Antonio",
+          "San Diego",
+          "Dallas",
+          "San Jose",
+          "Austin",
+          "Jacksonville",
+          "Fort Worth",
+          "Columbus"
+        ]
       },
       {
         "name": "Canada",
         "code": "CA",
-        "cities": ["Toronto", "Vancouver", "Montreal", "Calgary"]
+        "cities": [
+          "Toronto",
+          "Vancouver",
+          "Montreal",
+          "Calgary",
+          "Ottawa",
+          "Edmonton",
+          "Winnipeg",
+          "Quebec City",
+          "Hamilton",
+          "Kitchener",
+          "Halifax",
+          "London",
+          "Victoria",
+          "Saskatoon",
+          "Regina"
+        ]
       },
       {
         "name": "Mexico",
         "code": "MX",
-        "cities": ["Mexico City", "Guadalajara", "Monterrey", "Cancun"]
+        "cities": [
+          "Mexico City",
+          "Guadalajara",
+          "Monterrey",
+          "Cancun",
+          "Puebla",
+          "Tijuana",
+          "León",
+          "Ciudad Juárez",
+          "Zapopan",
+          "Mérida",
+          "Toluca",
+          "Querétaro",
+          "San Luis Potosí",
+          "Aguascalientes",
+          "Chihuahua"
+        ]
+      },
+      {
+        "name": "Cuba",
+        "code": "CU",
+        "cities": [
+          "Havana",
+          "Santiago de Cuba",
+          "Camagüey",
+          "Holguín",
+          "Guantánamo",
+          "Santa Clara",
+          "Cienfuegos",
+          "Matanzas",
+          "Bayamo",
+          "Pinar del Río",
+          "Las Tunas",
+          "Ciego de Ávila",
+          "Sancti Spíritus",
+          "Manzanillo",
+          "Moa"
+        ]
+      },
+      {
+        "name": "Costa Rica",
+        "code": "CR",
+        "cities": [
+          "San José",
+          "Alajuela",
+          "Cartago",
+          "Heredia",
+          "Liberia",
+          "Puntarenas",
+          "Limón",
+          "Grecia",
+          "Turrialba",
+          "Quesada",
+          "San Isidro",
+          "Nicoya",
+          "San Ramón",
+          "San Carlos",
+          "Pococí"
+        ]
+      },
+      {
+        "name": "Panama",
+        "code": "PA",
+        "cities": [
+          "Panama City",
+          "Colón",
+          "David",
+          "Santiago",
+          "La Chorrera",
+          "Chitré",
+          "Penonomé",
+          "Puerto Armuelles",
+          "Los Santos",
+          "Chepo",
+          "Antón",
+          "Changuinola",
+          "Boquete",
+          "Bocas del Toro",
+          "Metetí"
+        ]
+      },
+      {
+        "name": "Jamaica",
+        "code": "JM",
+        "cities": [
+          "Kingston",
+          "Montego Bay",
+          "Spanish Town",
+          "Portmore",
+          "Mandeville",
+          "Ocho Rios",
+          "Negril",
+          "May Pen",
+          "Brown's Town",
+          "Savanna-la-Mar",
+          "Linstead",
+          "Santa Cruz",
+          "Buff Bay",
+          "Port Antonio",
+          "Falmouth"
+        ]
+      },
+      {
+        "name": "Honduras",
+        "code": "HN",
+        "cities": [
+          "Tegucigalpa",
+          "San Pedro Sula",
+          "Choloma",
+          "La Ceiba",
+          "El Progreso",
+          "Puerto Cortés",
+          "Comayagua",
+          "Siguatepeque",
+          "Danlí",
+          "Santa Rosa de Copán",
+          "Tela",
+          "La Lima",
+          "Juticalpa",
+          "Gracias",
+          "Omoa"
+        ]
+      },
+      {
+        "name": "Guatemala",
+        "code": "GT",
+        "cities": [
+          "Guatemala City",
+          "Quetzaltenango",
+          "Escuintla",
+          "Huehuetenango",
+          "Chimaltenango",
+          "San Marcos",
+          "Mazatenango",
+          "Puerto Barrios",
+          "Jalapa",
+          "Cobán",
+          "Santa Lucía Cotzumalguapa",
+          "Chiquimula",
+          "Retalhuleu",
+          "Sololá",
+          "Flores"
+        ]
+      },
+      {
+        "name": "Belize",
+        "code": "BZ",
+        "cities": [
+          "Belize City",
+          "Belmopan",
+          "San Ignacio",
+          "Orange Walk",
+          "Corozal",
+          "Dangriga",
+          "Punta Gorda",
+          "Benque Viejo",
+          "San Pedro",
+          "Placencia",
+          "Independence",
+          "Hopkins",
+          "Ladyville",
+          "Toledo",
+          "Burrell Boom"
+        ]
       }
     ]
   },
@@ -145,27 +1080,212 @@
       {
         "name": "Brazil",
         "code": "BR",
-        "cities": ["São Paulo", "Rio de Janeiro", "Brasília", "Salvador"]
+        "cities": [
+          "São Paulo",
+          "Rio de Janeiro",
+          "Brasília",
+          "Salvador",
+          "Fortaleza",
+          "Belo Horizonte",
+          "Manaus",
+          "Curitiba",
+          "Recife",
+          "Porto Alegre",
+          "Belém",
+          "Goiânia",
+          "Guarulhos",
+          "Campinas",
+          "São Luís"
+        ]
       },
       {
         "name": "Argentina",
         "code": "AR",
-        "cities": ["Buenos Aires", "Córdoba", "Rosario", "Mendoza"]
+        "cities": [
+          "Buenos Aires",
+          "Córdoba",
+          "Rosario",
+          "Mendoza",
+          "La Plata",
+          "Tucumán",
+          "Mar del Plata",
+          "Salta",
+          "Santa Fe",
+          "San Juan",
+          "Resistencia",
+          "Corrientes",
+          "Santiago del Estero",
+          "Posadas",
+          "Neuquén"
+        ]
       },
       {
         "name": "Uruguay",
         "code": "UY",
-        "cities": ["Montevideo", "Salto", "Paysandú", "Maldonado"]
+        "cities": [
+          "Montevideo",
+          "Salto",
+          "Paysandú",
+          "Maldonado",
+          "Rivera",
+          "Tacuarembó",
+          "Durazno",
+          "Artigas",
+          "Canelones",
+          "Florida",
+          "Rocha",
+          "Soriano",
+          "Colonia",
+          "Lavalleja",
+          "San José"
+        ]
       },
       {
         "name": "Colombia",
         "code": "CO",
-        "cities": ["Bogotá", "Medellín", "Cali", "Cartagena"]
+        "cities": [
+          "Bogotá",
+          "Medellín",
+          "Cali",
+          "Cartagena",
+          "Barranquilla",
+          "Cúcuta",
+          "Bucaramanga",
+          "Pereira",
+          "Santa Marta",
+          "Ibagué",
+          "Manizales",
+          "Villavicencio",
+          "Pasto",
+          "Sincelejo",
+          "Montería"
+        ]
       },
       {
         "name": "Chile",
         "code": "CL",
-        "cities": ["Santiago", "Valparaíso", "Concepción", "Viña del Mar"]
+        "cities": [
+          "Santiago",
+          "Valparaíso",
+          "Concepción",
+          "Viña del Mar",
+          "Antofagasta",
+          "Temuco",
+          "Puerto Montt",
+          "La Serena",
+          "Rancagua",
+          "Iquique",
+          "Talca",
+          "Arica",
+          "Chillán",
+          "Osorno",
+          "Coyhaique"
+        ]
+      },
+      {
+        "name": "Peru",
+        "code": "PE",
+        "cities": [
+          "Lima",
+          "Arequipa",
+          "Trujillo",
+          "Chiclayo",
+          "Piura",
+          "Iquitos",
+          "Cusco",
+          "Huancayo",
+          "Pucallpa",
+          "Tacna",
+          "Chimbote",
+          "Tumbes",
+          "Puno",
+          "Ayacucho",
+          "Ica"
+        ]
+      },
+      {
+        "name": "Ecuador",
+        "code": "EC",
+        "cities": [
+          "Quito",
+          "Guayaquil",
+          "Cuenca",
+          "Santo Domingo",
+          "Machala",
+          "Manta",
+          "Portoviejo",
+          "Loja",
+          "Ambato",
+          "Esmeraldas",
+          "Riobamba",
+          "Latacunga",
+          "Ibarra",
+          "Tulcán",
+          "Azogues"
+        ]
+      },
+      {
+        "name": "Bolivia",
+        "code": "BO",
+        "cities": [
+          "La Paz",
+          "Santa Cruz",
+          "Cochabamba",
+          "Oruro",
+          "Sucre",
+          "Tarija",
+          "Potosí",
+          "Montero",
+          "Trinidad",
+          "El Alto",
+          "Riberalta",
+          "Yacuiba",
+          "Cobija",
+          "Villazón",
+          "Warnes"
+        ]
+      },
+      {
+        "name": "Paraguay",
+        "code": "PY",
+        "cities": [
+          "Asunción",
+          "Ciudad del Este",
+          "Encarnación",
+          "San Lorenzo",
+          "Luque",
+          "Capiatá",
+          "Lambaré",
+          "Fernando de la Mora",
+          "Ñemby",
+          "Itauguá",
+          "Caaguazú",
+          "Villa Elisa",
+          "Pedro Juan Caballero",
+          "Caacupé",
+          "Coronel Oviedo"
+        ]
+      },
+      {
+        "name": "Venezuela",
+        "code": "VE",
+        "cities": [
+          "Caracas",
+          "Maracaibo",
+          "Valencia",
+          "Barquisimeto",
+          "Ciudad Guayana",
+          "San Cristóbal",
+          "Maturín",
+          "Puerto La Cruz",
+          "Maracay",
+          "Barcelona",
+          "Cumaná",
+          "Cabimas",
+          "Puerto Ordaz",
+          "Puerto Ayacucho",
+          "Los Teques"
+        ]
       }
     ]
   }
