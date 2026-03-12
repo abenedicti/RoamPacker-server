@@ -59,6 +59,38 @@ router.get('/:itineraryId', verifyToken, async (req, res, next) => {
   }
 });
 
+//* update itinerary
+router.put('/:itineraryId', verifyToken, async (req, res, next) => {
+  try {
+    const { itineraryId } = req.params;
+    const { title, points } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(itineraryId)) {
+      return res.status(400).json({ message: 'Invalid itinerary ID' });
+    }
+
+    const itinerary = await Itinerary.findById(itineraryId);
+    if (!itinerary) {
+      return res.status(404).json({ message: 'Itinerary not found' });
+    }
+
+    // check owner
+    if (itinerary.owner.toString() !== req.payload._id) {
+      return res.status(403).json({ message: 'Not authorized' });
+    }
+
+    // update fields
+    if (title !== undefined) itinerary.title = title;
+    if (points !== undefined) itinerary.points = points;
+
+    await itinerary.save();
+
+    res.json(itinerary);
+  } catch (err) {
+    next(err);
+  }
+});
+
 //* share iti with another user
 //! tested ok
 router.put('/:itineraryId/share', verifyToken, async (req, res, next) => {
