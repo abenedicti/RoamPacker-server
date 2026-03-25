@@ -47,7 +47,6 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-// Login
 // POST '/api/auth/login' => Validating user credentials and sending the Token
 //! tested ok
 router.post('/login', async (req, res, next) => {
@@ -71,7 +70,7 @@ router.post('/login', async (req, res, next) => {
       foundUser.password,
     );
     if (isPasswordCorrect === false) {
-      res.status(400).json({ errorMessage: 'Wrong password' });
+      return res.status(400).json({ errorMessage: 'Wrong password' });
     }
     const payload = {
       _id: foundUser._id,

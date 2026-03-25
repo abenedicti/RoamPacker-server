@@ -76,6 +76,47 @@ router.post('/save', verifyToken, async (req, res, next) => {
   }
 });
 
+router.post('/save-real/:id', verifyToken, async (req, res, next) => {
+  try {
+    const realUserId = req.params.id;
+
+    const realUser = await User.findById(realUserId);
+    if (!realUser) {
+      return res.status(404).json({ errorMessage: 'User not found' });
+    }
+
+    const matchData = {
+      _id: realUser._id.toString(),
+      username: realUser.username,
+      photoUrl: realUser.photoUrl,
+      interests: realUser.interests || [],
+      travelStyle: realUser.travelStyle || '',
+      budget: realUser.matchingCriteria?.budget || 0,
+      startDate: realUser.matchingCriteria?.startDate || null,
+      tripDuration: realUser.matchingCriteria?.tripDuration || 0,
+      favoriteFood: realUser.matchingCriteria?.favoriteFood || '',
+      preferredCountry: realUser.matchingCriteria?.preferredCountry || '',
+      firstTrip: realUser.matchingCriteria?.firstTrip || false,
+      partyMood: realUser.matchingCriteria?.partyMood || false,
+      matchPercentage: req.body.matchPercentage || 0,
+      isFake: false,
+    };
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.payload._id,
+      { $addToSet: { savedMatchedUsers: matchData } },
+      { new: true },
+    );
+
+    console.log('Match saved for user:', updatedUser._id);
+
+    res.status(200).json(updatedUser.savedMatchedUsers);
+  } catch (err) {
+    console.error('Error saving real match:', err);
+    next(err);
+  }
+});
+
 // DELETE /matches/:matchId
 router.delete('/:matchId', verifyToken, async (req, res, next) => {
   try {
@@ -83,7 +124,7 @@ router.delete('/:matchId', verifyToken, async (req, res, next) => {
 
     const updatedUser = await User.findByIdAndUpdate(
       req.payload._id,
-      { $pull: { savedMatchedUsers: { _id: matchId } } }, // supprime l'objet avec ce _id
+      { $pull: { savedMatchedUsers: { _id: matchId } } },
       { new: true },
     );
 

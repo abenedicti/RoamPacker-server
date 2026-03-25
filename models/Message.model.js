@@ -15,6 +15,7 @@ const messageSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  deletedFor: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 const Message = model('Message', messageSchema);
 module.exports = Message;

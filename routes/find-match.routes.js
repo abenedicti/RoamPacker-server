@@ -21,43 +21,93 @@ router.post('/', verifyToken, async (req, res, next) => {
 
     const currentUserId = req.payload._id;
 
+    //*save search criteria
+    await User.findByIdAndUpdate(currentUserId, {
+      matchingCriteria: {
+        budget,
+        interests: Array.isArray(interests)
+          ? interests
+          : interests?.length
+            ? interests.split(',').map((i) => i.trim())
+            : [],
+        travelStyle,
+        startDate,
+        tripDuration,
+        favoriteFood,
+        preferredCountry,
+        firstTrip,
+        partyMood,
+      },
+    });
+
     //* fetch all users except the current user
-    const allUsers = await User.find({ _id: { $ne: currentUserId } });
+    const allUsers = await User.find({
+      _id: { $ne: currentUserId },
+    });
 
     const matchedUsersList = []; //* to store real matches
 
     allUsers.forEach((user) => {
-      let matchCount = 0;
+      const criteria = user.matchingCriteria;
+      if (!criteria) return; // skip users with no saved criteria
 
-      if (budget && user.budget <= budget) matchCount++;
-      if (travelStyle && user.travelStyle === travelStyle) matchCount++;
-      if (preferredCountry && user.preferredCountry === preferredCountry)
+      let matchCount = 0;
+      if (criteria.budget && criteria.budget <= budget) matchCount++;
+      if (criteria.travelStyle && criteria.travelStyle === travelStyle)
         matchCount++;
       if (
-        interests?.length &&
-        user.interests.some((i) => interests.includes(i))
+        criteria.preferredCountry &&
+        criteria.preferredCountry === preferredCountry
       )
         matchCount++;
       if (
+        criteria.interests?.length &&
+        interests?.length &&
+        criteria.interests.some((i) => interests.includes(i))
+      )
+        matchCount++;
+      if (
+        criteria.startDate &&
         startDate &&
-        user.startDate &&
-        new Date(user.startDate).toDateString() ===
+        new Date(criteria.startDate).toDateString() ===
           new Date(startDate).toDateString()
       )
         matchCount++;
-      if (tripDuration && user.tripDuration === tripDuration) matchCount++;
-      if (favoriteFood && user.favoriteFood === favoriteFood) matchCount++;
-      if (firstTrip !== undefined && user.firstTrip === firstTrip) matchCount++;
-      if (partyMood !== undefined && user.partyMood === partyMood) matchCount++;
+      if (criteria.tripDuration && criteria.tripDuration === tripDuration)
+        matchCount++;
+      if (criteria.favoriteFood && criteria.favoriteFood === favoriteFood)
+        matchCount++;
+      if (criteria.firstTrip !== undefined && criteria.firstTrip === firstTrip)
+        matchCount++;
+      if (criteria.partyMood !== undefined && criteria.partyMood === partyMood)
+        matchCount++;
 
       const totalCriteria = 8;
       const matchPercentage = Math.round((matchCount / totalCriteria) * 100);
+
       if (matchPercentage >= 50) {
-        matchedUsersList.push(user); // push le user entier
+        matchedUsersList.push({
+          ...user.toObject(),
+          matchPercentage,
+          budget: criteria.budget,
+          interests: criteria.interests,
+          travelStyle: criteria.travelStyle,
+          startDate: criteria.startDate,
+          tripDuration: criteria.tripDuration,
+          favoriteFood: criteria.favoriteFood,
+          preferredCountry: criteria.preferredCountry,
+          firstTrip: criteria.firstTrip,
+          partyMood: criteria.partyMood,
+        });
       }
     });
 
-    // add fake users
+    //* Add isFake = false for real users
+    matchedUsersList.forEach((u) => {
+      u.isFake = false;
+    });
+
+    //* add fake users
     const interestsPool = [
       'Hiking',
       'Food',
@@ -79,7 +129,7 @@ router.post('/', verifyToken, async (req, res, next) => {
       'Road Trip',
     ];
     const fakeUsersRaw = await fetchRandomUsers(10);
-    const fakeUsers = fakeUsersRaw.map((u, i) => {
+    const fakeUsers = fakeUsersRaw.map((u) => {
       const fakeId = new mongoose.Types.ObjectId();
       return {
         _id: fakeId,
@@ -99,12 +149,18 @@ router.post('/', verifyToken, async (req, res, next) => {
         firstTrip: Math.random() < 0.5,
         partyMood: Math.random() < 0.5,
         matchPercentage: Math.floor(Math.random() * 50) + 50,
+        isFake: true, //* flag fake users
       };
     });
 
-    // on renvoie tout pour frontend (mais on ne sauvegarde pas les fake users dans DB)
+    console.log(
+      'Real matched users:',
+      matchedUsersList.map((u) => u.username),
+    );
+
     res.json([...matchedUsersList, ...fakeUsers]);
   } catch (error) {
+    console.error('Error in find-match route:', error);
     next(error);
   }
 });

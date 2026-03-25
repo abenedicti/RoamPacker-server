@@ -59,6 +59,19 @@ const userSchema = new Schema(
     tripDuration: Number,
     favoriteFood: String,
     preferredCountry: String,
+
+    //* NEW: store last used search criteria
+    matchingCriteria: {
+      budget: Number,
+      interests: [String],
+      travelStyle: String,
+      startDate: Date,
+      tripDuration: Number,
+      favoriteFood: String,
+      preferredCountry: String,
+      firstTrip: Boolean,
+      partyMood: Boolean,
+    },
   },
   {
     timestamps: true,

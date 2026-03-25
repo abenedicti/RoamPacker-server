@@ -20,6 +20,7 @@ router.post('/', verifyToken, async (req, res, next) => {
       sender: senderObjectId,
       receiver: receiverObjectId,
       text,
+      deletedFor: [],
     });
     res.status(201).json(newMessage);
   } catch (error) {
@@ -35,6 +36,7 @@ router.get('/conversations', verifyToken, async (req, res, next) => {
 
     const allMessages = await Message.find({
       $or: [{ sender: userId }, { receiver: userId }],
+      deletedFor: { $ne: userId },
     })
       .populate('sender', 'username')
       .populate('receiver', 'username')
@@ -65,12 +67,52 @@ router.get(
           { sender: currentUserId, receiver: otherUserId },
           { sender: otherUserId, receiver: currentUserId },
         ],
+        deletedFor: { $ne: currentUserId },
       })
         .populate('sender', 'username')
         .populate('receiver', 'username')
         .sort({ createdAt: 1 });
 
       res.status(200).json(conversationMessages);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+//* Delete conversation only for current user
+router.delete(
+  '/conversation/:otherUserId',
+  verifyToken,
+  async (req, res, next) => {
+    try {
+      const currentUserId = req.payload._id;
+      const otherUserId = req.params.otherUserId;
+
+      if (!mongoose.Types.ObjectId.isValid(otherUserId)) {
+        return res.status(400).json({ errorMessage: 'Invalid otherUserId' });
+      }
+
+      //* Find all messages between the two users
+      const messages = await Message.find({
+        $or: [
+          { sender: currentUserId, receiver: otherUserId },
+          { sender: otherUserId, receiver: currentUserId },
+        ],
+      });
+
+      //* Mark each message as deleted for the current user
+      await Promise.all(
+        messages.map(async (msg) => {
+          if (!msg.deletedFor.includes(currentUserId)) {
+            msg.deletedFor.push(currentUserId);
+            await msg.save();
+          }
+        }),
+      );
+
+      res
+        .status(200)
+        .json({ message: 'Conversation deleted for current user' });
     } catch (error) {
       next(error);
     }
