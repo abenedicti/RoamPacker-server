@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const User = require('../models/User.model');
 const verifyToken = require('../middlewares/auth.middlewares');
 
@@ -108,6 +109,26 @@ router.delete('/:userId', verifyToken, async (req, res, next) => {
     res.status(200).json({ message: 'User deleted successfully', user });
   } catch (error) {
     next(error);
+  }
+});
+// GET /users/:userId/public
+router.get('/:userId/public', verifyToken, async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ errorMessage: 'Invalid user ID' });
+    }
+
+    const user = await User.findById(userId).select(
+      'username age gender nationality aboutMe photoUrl countryOfResidence',
+    );
+
+    if (!user) return res.status(404).json({ errorMessage: 'User not found' });
+
+    res.json(user);
+  } catch (err) {
+    next(err);
   }
 });
 

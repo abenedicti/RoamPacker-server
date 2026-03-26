@@ -7,24 +7,25 @@ const mongoose = require('mongoose');
 //! tested ok
 router.post('/', verifyToken, async (req, res, next) => {
   try {
-    const { receiverId, text } = req.body;
-    // check if valid id
+    const { receiverId, text, itineraryId, itineraryLink, itineraryThumbnail } =
+      req.body;
+
     if (!mongoose.Types.ObjectId.isValid(receiverId)) {
       return res.status(400).json({ errorMessage: 'Invalid receiver ID' });
     }
-    // convert  in ObjectId
-    const senderObjectId = new mongoose.Types.ObjectId(req.payload._id);
-    const receiverObjectId = new mongoose.Types.ObjectId(receiverId);
 
     const newMessage = await Message.create({
-      sender: senderObjectId,
-      receiver: receiverObjectId,
+      sender: req.payload._id,
+      receiver: receiverId,
       text,
-      deletedFor: [],
+      itineraryId: itineraryId || null,
+      itineraryLink: itineraryLink || null,
+      itineraryThumbnail: itineraryThumbnail || null,
     });
+
     res.status(201).json(newMessage);
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
   }
 });
 

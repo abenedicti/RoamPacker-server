@@ -93,33 +93,36 @@ router.put('/:itineraryId', verifyToken, async (req, res, next) => {
 
 //* share iti with another user
 //! tested ok
+
 router.put('/:itineraryId/share', verifyToken, async (req, res, next) => {
   try {
-    const { targetUserId } = req.body; // user to share the itinerary with
+    const { targetUserId } = req.body;
 
-    // validate itinerary ID
+    //* check iti id
     if (!mongoose.Types.ObjectId.isValid(req.params.itineraryId)) {
       return res.status(400).json({ errorMessage: 'Invalid itinerary ID' });
     }
 
-    // find the itinerary
     const itineraryToShare = await Itinerary.findById(req.params.itineraryId);
     if (!itineraryToShare) {
       return res.status(404).json({ message: 'Itinerary not found' });
     }
 
-    // check that the logged-in user is the owner
+    //* check if its connected user
     if (itineraryToShare.owner.toString() !== req.payload._id) {
       return res
         .status(403)
         .json({ message: 'Not authorized to share this itinerary' });
     }
 
-    // add target user to sharedWith array, avoiding duplicates
-    itineraryToShare.sharedWith.addToSet(targetUserId);
-    await itineraryToShare.save();
+    //* avoid deplicate
+    await Itinerary.findByIdAndUpdate(
+      req.params.itineraryId,
+      { $addToSet: { sharedWith: targetUserId } },
+      { new: true },
+    );
 
-    res.json(itineraryToShare);
+    res.json({ message: 'Itinerary shared successfully' });
   } catch (error) {
     next(error);
   }
