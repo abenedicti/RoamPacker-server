@@ -75,10 +75,10 @@ router.post('/save', verifyToken, async (req, res, next) => {
     next(err);
   }
 });
-
 router.post('/save-real/:id', verifyToken, async (req, res, next) => {
   try {
     const realUserId = req.params.id;
+    console.log('Received save request for:', realUserId);
 
     const realUser = await User.findById(realUserId);
     if (!realUser) {
